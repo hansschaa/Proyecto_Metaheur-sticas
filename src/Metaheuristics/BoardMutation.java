@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Metaheuristics.GA;
+package Metaheuristics;
 
+import Metaheuristics.GA.GABoard;
+import Metaheuristics.GA.GAProblem;
 import SokoGenerator.GeneratorUtils;
 import SokoGenerator.Tree.Pair;
 import org.moeaframework.core.Solution;
@@ -13,13 +15,13 @@ import org.moeaframework.core.Variation;
  *
  * @author Hans
  */
-public class GABoardMutation implements Variation{
+public class BoardMutation implements Variation{
 
     private final double mutationRate;
     Pair selectedPair;
     Pair emptySpace;
-    public GABoardMutation(double mutationRate) {
-        //System.out.println("GABoardMutation");
+    public BoardMutation(double mutationRate) {
+        //System.out.println("BoardMutation");
         this.mutationRate = mutationRate;
     }
     
@@ -37,9 +39,9 @@ public class GABoardMutation implements Variation{
     public Solution[] evolve(Solution[] parents) {
         //System.out.println("Mutation");
 
-        if (GAProblem.random.nextFloat()> GAProblem.P_MUTATION_PROB) return parents;
+        if (Metaheuristics.random.nextFloat()> Metaheuristics.P_MUTATION_PROB) return parents;
         //System.out.println("Mutation");
-        GAProblem.R_TOTAL_MUTATION++;
+        Metaheuristics.R_TOTAL_MUTATION++;
         
         //Clone current board state
         GABoard parent1 = (GABoard) parents[0].getVariable(0);
@@ -47,10 +49,10 @@ public class GABoardMutation implements Variation{
         char[][] cloneBoard = GeneratorUtils.CloneCharArray(offspring1.GetBoard());
         
         //Player : 0 , box: 1 , goal: 2
-        var randomElementIndex = GAProblem.random.nextInt(3);
+        var randomElementIndex = Metaheuristics.random.nextInt(3);
         int max = GeneratorUtils.CountCharacters(randomElementIndex, cloneBoard);
         selectedPair = GeneratorUtils.FindCharacterPairIndexBased(cloneBoard, randomElementIndex,
-                GAProblem.random.nextInt(max));
+                Metaheuristics.random.nextInt(max));
         
         //Get a empty space
         emptySpace = GeneratorUtils.GetEmptySpacePair(cloneBoard);
@@ -86,8 +88,8 @@ public class GABoardMutation implements Variation{
         
         
         int boxCount = GeneratorUtils.CountCharacters(1, cloneBoard);
-        if(GAProblem.Solve(cloneBoard, false, boxCount) != null){
-            GAProblem.R_TOTAL_EFFECTIVE_MUTATION++;
+        if(Metaheuristics.Solve(cloneBoard, false, boxCount) != null){
+            Metaheuristics.R_TOTAL_EFFECTIVE_MUTATION++;
             offspring1.SetBoard(cloneBoard);
             
             Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)

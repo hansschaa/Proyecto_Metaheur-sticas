@@ -5,6 +5,7 @@
 package SokoGenerator;
 
 import Metaheuristics.GA.GAProblem;
+import Metaheuristics.Metaheuristics;
 import SokoGenerator.Tree.Pair;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class GeneratorUtils {
     }
     
     public static char[][] CloneCharArray(char[][] originalArray) {
-        GAProblem.COPY++;
+        Metaheuristics.COPY++;
         
         length = originalArray.length;
         char[][] clonedArray  = new char[length][originalArray[0].length];
@@ -80,8 +81,8 @@ public class GeneratorUtils {
 
         Pair pair = new Pair(0,0);
         do{
-            pair.i = GAProblem.random.nextInt( board.length );
-            pair.j = GAProblem.random.nextInt( board[0].length );
+            pair.i = Metaheuristics.random.nextInt( board.length );
+            pair.j = Metaheuristics.random.nextInt( board[0].length );
        
         }while(board[pair.i][pair.j] != ' ');
         return pair;
@@ -474,7 +475,7 @@ public class GeneratorUtils {
         Pair pair = null;
         int randomID;
         do{
-            randomID = GAProblem.random.nextInt(maxID);
+            randomID = Metaheuristics.random.nextInt(maxID);
             pair = GeneratorUtils.FindCharacterPairIndexBased(genes, elementID, randomID);
         }while(pair.i == excludePair.i && pair.j == excludePair.j);
         

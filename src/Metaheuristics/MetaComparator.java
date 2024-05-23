@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Metaheuristics.GA;
+package Metaheuristics;
 
+import Metaheuristics.GA.GABoard;
 import SokoGenerator.GeneratorUtils;
 import org.moeaframework.algorithm.single.AggregateObjectiveComparator;
 import org.moeaframework.core.Solution;
@@ -12,7 +13,7 @@ import org.moeaframework.core.Solution;
  *
  * @author Hans
  */
-public class GAComparator implements AggregateObjectiveComparator{
+public class MetaComparator implements AggregateObjectiveComparator{
 
     @Override
     public double[] getWeights() {
@@ -22,14 +23,14 @@ public class GAComparator implements AggregateObjectiveComparator{
     @Override
     public double calculateFitness(Solution solution) {
         System.out.println("Compute fitness");
-        GAProblem.CALCULATEFITNESS++;
+        Metaheuristics.CALCULATEFITNESS++;
         
         int boxCount = GeneratorUtils.CountCharacters(1, ((GABoard) solution.getVariable(0)).GetBoard());
-        GAProblem.Solve(((GABoard) solution.getVariable(0)).GetBoard(), true, boxCount);
+        Metaheuristics.Solve(((GABoard) solution.getVariable(0)).GetBoard(), true, boxCount);
         
         //GeneratorUtils.PrintCharArray(board);
         //System.out.println("GAProblem.application.movesHistory.getPushesCount(): " + GAProblem.application.movesHistory.getPushesCount());
-        return GAProblem.application.movesHistory.getPushesCount(); // Modificar para devolver el valor de ajuste adecuado
+        return Metaheuristics.application.movesHistory.getPushesCount(); // Modificar para devolver el valor de ajuste adecuado
     }
 
     @Override

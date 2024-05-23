@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Metaheuristics.GA;
+package Metaheuristics;
 
+import Metaheuristics.GA.GAProblem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,11 +17,11 @@ import org.moeaframework.core.Solution;
  *
  * @author Hans
  */
-public class GAInitialize implements Initialization {
+public class MetaInitialize implements Initialization {
     protected final Problem problem;
-    public GAInitialize(Problem problem) {
+    public MetaInitialize(Problem problem) {
         super();
-        //System.out.println("GAInitialize");
+        //System.out.println("MetaInitialize");
         this.problem = problem;
     }
     
@@ -44,7 +45,7 @@ public class GAInitialize implements Initialization {
         
         ArrayList<Solution> initialPopulationAux = new ArrayList<>();
         
-        for (int i = 0; i < GAProblem.P_INITIAL_SEARCH_SIZE; i++) {
+        for (int i = 0; i < Metaheuristics.P_INITIAL_SEARCH_SIZE; i++) {
                 Solution solution= problem.newSolution();
                 initialPopulationAux.add(solution);
         }
@@ -59,7 +60,7 @@ public class GAInitialize implements Initialization {
         });
 
         // Obtener los primeros 10 elementos
-        List<Solution> topIndividuals = initialPopulationAux.subList(0, Math.min(populationSize, GAProblem.P_INITIAL_SEARCH_SIZE));
+        List<Solution> topIndividuals = initialPopulationAux.subList(0, Math.min(populationSize, Metaheuristics.P_INITIAL_SEARCH_SIZE));
         /*for (int i = 0; i < initialPopulationAux.size(); i++) {
             ((GABoard)initialPopulationAux.get(i).getVariable(i)).SetBoard(null);
         }*/

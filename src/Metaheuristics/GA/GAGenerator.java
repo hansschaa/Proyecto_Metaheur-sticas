@@ -4,17 +4,18 @@
  */
 package Metaheuristics.GA;
 
-import SokoGenerator.GeneratorUtils;
+import Metaheuristics.MetaInitialize;
+import Metaheuristics.MetaComparator;
+import Metaheuristics.BoardMutation;
+import Metaheuristics.BoardCrossover;
+import Metaheuristics.Metaheuristics;
 import de.sokoban_online.jsoko.JSoko;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import jxl.Workbook;
 import org.moeaframework.algorithm.single.GeneticAlgorithm;
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.Population;
@@ -28,17 +29,13 @@ import org.moeaframework.core.operator.CompoundVariation;
  */
 public class GAGenerator {
 
-    JSoko application;
-    
     //List for results
     ArrayList<Double> bestFitnessPerGeneration = new ArrayList<>();
     ArrayList<Double> worstFitnessPerGeneration = new ArrayList<>();
     ArrayList<Float> avgFitnessPerGeneration = new ArrayList<>();
     ArrayList<String> stdDevFitnessPerGeneration = new ArrayList<>();
         
-    public GAGenerator(JSoko application){
-        this.application = application;
-        
+    public GAGenerator(){
         bestFitnessPerGeneration = new ArrayList<>();
         worstFitnessPerGeneration = new ArrayList<>();
         avgFitnessPerGeneration = new ArrayList<>();
@@ -47,32 +44,33 @@ public class GAGenerator {
     
     public void Start(){
         System.out.println("Running GAGenerator");
+        Metaheuristics.Init();
         
         // Crear operadores de crossover y mutación
-        GABoardCrossover gaBoardCrossover = new GABoardCrossover(GAProblem.P_CROSSOVER_PROB);
-        GABoardMutation gaBoardMutation = new GABoardMutation(GAProblem.P_MUTATION_PROB);
+        BoardCrossover gaBoardCrossover = new BoardCrossover(Metaheuristics.P_CROSSOVER_PROB);
+        BoardMutation gaBoardMutation = new BoardMutation(Metaheuristics.P_MUTATION_PROB);
         Variation variation = new CompoundVariation(gaBoardCrossover, gaBoardMutation);
         
          // Crear el comparador para problemas monoobjetivo
-        GAComparator gaComparator = new GAComparator();
+        MetaComparator gaComparator = new MetaComparator();
         
         // Problem
-        GAProblem gaProblem = new GAProblem(application);
+        GAProblem gaProblem = new GAProblem(Metaheuristics.application);
  
         // Crear la población inicial aleatoria
-        GAInitialize gaInitialize = new GAInitialize(gaProblem);
+        MetaInitialize gaInitialize = new MetaInitialize(gaProblem);
         
         // Crear el algoritmo genético
         Algorithm ga = new GeneticAlgorithm(
                 gaProblem,
-                GAProblem.P_POPULATION_COUNT,
+                Metaheuristics.P_POPULATION_COUNT,
                 gaComparator, 
                 gaInitialize,
                 variation
         );
         Population population = null;
         // Ejecutar el algoritmo por un número determinado de generaciones
-        for (int generation = 0; generation < GAProblem.P_GENERATION_COUNT; generation++) {
+        for (int generation = 0; generation < Metaheuristics.P_GENERATION_COUNT; generation++) {
             ga.step();
             System.out.println("Generation: " + generation);
 
@@ -150,7 +148,7 @@ public class GAGenerator {
             csvWriter.append("Generation,Best Fitness,Worst Fitness,Average Fitness,Standard Deviation\n");
 
             // Rellenar datos
-            for (int i = 0; i < GAProblem.P_GENERATION_COUNT; i++) {
+            for (int i = 0; i < Metaheuristics.P_GENERATION_COUNT; i++) {
                 csvWriter.append(String.valueOf(i)).append(",")
                         .append(String.valueOf(bestFitnessPerGeneration.get(i))).append(",")
                         .append(String.valueOf(worstFitnessPerGeneration.get(i))).append(",")
@@ -176,7 +174,7 @@ public class GAGenerator {
        
         
         alg.getResult().display();
-        GAProblem.printStatistics();
+        Metaheuristics.printStatistics();
     }
 
     private Solution GetBestSOlution(Algorithm alg) {

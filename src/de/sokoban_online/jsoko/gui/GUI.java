@@ -135,9 +135,10 @@ import de.sokoban_online.jsoko.utilities.Utilities;
 import de.sokoban_online.jsoko.utilities.OSSpecific.OSSpecific;
 import de.sokoban_online.jsoko.utilities.OSSpecific.OSSpecific.OSType;
 import de.sokoban_online.jsoko.workInProgress.newSettingsPanel.SettingsFrameNew;
-import Metaheuristics.DEGenerator;
+import Metaheuristics.DE.DEGenerator;
 import Metaheuristics.GA.GAGenerator;
-import Metaheuristics.PSOGenerator;
+import Metaheuristics.Metaheuristics;
+import Metaheuristics.PSO.PSOGenerator;
 import examples.Prueba;
 import java.util.logging.Logger;
 
@@ -1069,10 +1070,15 @@ public final class GUI extends JPanel implements ActionListener {
                 JMenu generateTypes = new JMenu("Metaheurísticas");
 		menu.add(generateTypes);
                 
+                  //Metaheuristics
+                Metaheuristics Metaheuristics = new Metaheuristics(application);
+               
+                
                 //Generators
-                GAGenerator gaGenerator = new GAGenerator(application);
+                GAGenerator gaGenerator = new GAGenerator();
                 PSOGenerator psoGenerator = new PSOGenerator();
                 DEGenerator deGenerator = new DEGenerator();
+               
                 
                 JMenuItem GA = new JMenuItem("GA");
                 menuItem.setActionCommand("InitGA");
@@ -2087,6 +2093,9 @@ public final class GUI extends JPanel implements ActionListener {
 		infoButton.setPreferredSize(new Dimension(80, menuBar.getPreferredSize().height)); // should not be higher than the menu bar
 		infoButton.setVisible(false);
 		menuBar.add(infoButton);
+                
+                 
+               
 
 		return menuBar;
 	}

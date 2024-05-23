@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Metaheuristics.GA;
+package Metaheuristics;
 
+import Metaheuristics.GA.GABoard;
+import Metaheuristics.GA.GAProblem;
 import SokoGenerator.GeneratorUtils;
 import SokoGenerator.Tree.CrossPair;
 import SokoGenerator.Tree.Pair;
@@ -17,7 +19,7 @@ import org.moeaframework.core.Variation;
  *
  * @author Hans
  */
-public class GABoardCrossover implements Variation {
+public class BoardCrossover implements Variation {
     private final double crossoverRate;
     private final Random random = new Random();
     de.sokoban_online.jsoko.leveldata.solutions.Solution solution;
@@ -30,7 +32,7 @@ public class GABoardCrossover implements Variation {
     ArrayList<Character> regionChars;
    
             
-    public GABoardCrossover(double crossoverRate) {
+    public BoardCrossover(double crossoverRate) {
         System.out.println("GABoardCrossover");
         this.crossoverRate = crossoverRate;
         
@@ -58,7 +60,7 @@ public class GABoardCrossover implements Variation {
 
         if (random.nextFloat() > crossoverRate) return parents;
       
-        GAProblem.R_TOTAL_CROSSOVER++;
+        Metaheuristics.R_TOTAL_CROSSOVER++;
         
         //Parent 1
         GABoard parent1 = (GABoard) parents[0].getVariable(0);
@@ -77,12 +79,12 @@ public class GABoardCrossover implements Variation {
             
         else{
             //Select a random region
-            var randomInterestingPivot = interestingPivots.get(GAProblem.random.nextInt(interestingPivots.size()));
+            var randomInterestingPivot = interestingPivots.get(Metaheuristics.random.nextInt(interestingPivots.size()));
 
             //Put random region in clone
             /*System.out.println("ANTES DE PONER LA REGION");
             GeneratorUtils.PrintCharArray(cloneBoard_1);*/
-            for(int i = 0 ; i < GAProblem.P_CROSS_SPACING ; i++){
+            for(int i = 0 ; i < Metaheuristics.P_CROSS_SPACING ; i++){
                 var charClone =  parent2.GetBoard()
                         [randomInterestingPivot.pair.i][randomInterestingPivot.pair.j];
                 /*System.out.println("PONER EL CHAR: " + charClone);
@@ -98,9 +100,9 @@ public class GABoardCrossover implements Variation {
             if(isLegal){
                 int boxCount = GeneratorUtils.CountCharacters(1, cloneBoard_1);
                 
-                solution = GAProblem.Solve(cloneBoard_1, false, boxCount);
+                solution = Metaheuristics.Solve(cloneBoard_1, false, boxCount);
                 if(solution != null){
-                    GAProblem.R_TOTAL_EFFECTIVE_CROSSOVER++;
+                    Metaheuristics.R_TOTAL_EFFECTIVE_CROSSOVER++;
                     
                     GABoard offspring1 = new GABoard(cloneBoard_1);
                     
@@ -117,10 +119,10 @@ public class GABoardCrossover implements Variation {
                 
                 //Retry
                 int boxCount = GeneratorUtils.CountCharacters(1, cloneBoard_1);
-                solution = GAProblem.Solve(cloneBoard_1, false, boxCount);
+                solution = Metaheuristics.Solve(cloneBoard_1, false, boxCount);
                 if(solution != null){
-                    GAProblem.R_TOTAL_EFFECTIVE_REPAIR++;
-                    GAProblem.R_TOTAL_EFFECTIVE_CROSSOVER++;
+                    Metaheuristics.R_TOTAL_EFFECTIVE_REPAIR++;
+                    Metaheuristics.R_TOTAL_EFFECTIVE_CROSSOVER++;
                     GABoard offspring1 = new GABoard(cloneBoard_1);
                     
                     Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
@@ -140,7 +142,7 @@ public class GABoardCrossover implements Variation {
     
     public void RepairIllegal(char[][] cloneBoard){
         
-        GAProblem.R_TOTAL_REPAIR++;
+        Metaheuristics.R_TOTAL_REPAIR++;
         
         //Check illegality
         int playerCount = GeneratorUtils.CountCharacters(0, cloneBoard);
@@ -149,7 +151,7 @@ public class GABoardCrossover implements Variation {
         
         //For player
         if(playerCount > 1){
-            int specificPlayerCount = GAProblem.random.nextInt(2);
+            int specificPlayerCount = Metaheuristics.random.nextInt(2);
             Pair playerIndex = GeneratorUtils.FindCharacterPairIndexBased(cloneBoard, 0, specificPlayerCount);
             if(cloneBoard[playerIndex.i][playerIndex.j] == '+')
                 cloneBoard[playerIndex.i][playerIndex.j] = '.';
@@ -222,9 +224,9 @@ public class GABoardCrossover implements Variation {
 
                 regionChars.clear();
                 //Check horizontal
-                for(int k = 0 ; k < GAProblem.P_CROSS_SPACING; k++){
+                for(int k = 0 ; k < Metaheuristics.P_CROSS_SPACING; k++){
                    
-                    if(pivotAux.j > otherGenes[0].length - GAProblem.P_CROSS_SPACING || otherGenes[pivotAux.i][pivotAux.j] == '#') {
+                    if(pivotAux.j > otherGenes[0].length - Metaheuristics.P_CROSS_SPACING || otherGenes[pivotAux.i][pivotAux.j] == '#') {
                         break;
                     }
                     
@@ -234,7 +236,7 @@ public class GABoardCrossover implements Variation {
                 }
                 
                 //Try add
-                if(regionChars.size() == GAProblem.P_CROSS_SPACING){
+                if(regionChars.size() == Metaheuristics.P_CROSS_SPACING){
                     if((regionChars.contains('@') || regionChars.contains('+') || regionChars.contains('$') || 
                            regionChars.contains('.') || regionChars.contains('*')) && !regionChars.contains('#')){
                         interestingPivots.add(new CrossPair( new Pair(pivot.i, pivot.j), new Pair(0,1)));
@@ -245,9 +247,9 @@ public class GABoardCrossover implements Variation {
                 pivotAux.j = pivot.j;
                 regionChars.clear();
                 //Check vertical
-                for(int k = 0 ; k < GAProblem.P_CROSS_SPACING; k++){
+                for(int k = 0 ; k < Metaheuristics.P_CROSS_SPACING; k++){
                     
-                    if(pivotAux.i > otherGenes.length - GAProblem.P_CROSS_SPACING || otherGenes[pivotAux.i][pivotAux.j] == '#'){
+                    if(pivotAux.i > otherGenes.length - Metaheuristics.P_CROSS_SPACING || otherGenes[pivotAux.i][pivotAux.j] == '#'){
                         break;
                     } 
                     
@@ -256,7 +258,7 @@ public class GABoardCrossover implements Variation {
                 }
                 
                   //Try add
-                if(regionChars.size() == GAProblem.P_CROSS_SPACING){
+                if(regionChars.size() == Metaheuristics.P_CROSS_SPACING){
                     if(regionChars.contains('@') || regionChars.contains('+') || regionChars.contains('$') || 
                            regionChars.contains('.') || regionChars.contains('*')){
                     interestingPivots.add(new CrossPair( new Pair(pivot.i, pivot.j), new Pair(1,0)));
@@ -283,7 +285,7 @@ public class GABoardCrossover implements Variation {
         if(boxCount != goalCount)
             return false;
         
-        if(boxCount > GAProblem.P_MAX_BOXES){
+        if(boxCount > Metaheuristics.P_MAX_BOXES){
             
             Pair boxToRemove = GeneratorUtils.RemoveRandomElementByType(1,boxCount,newCrossPair.pair, board);
             Pair goalToRemove = GeneratorUtils.RemoveRandomElementByType(2,goalCount,newCrossPair.pair, board);

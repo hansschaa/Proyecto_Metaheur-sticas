@@ -1,5 +1,6 @@
 package Metaheuristics.GA;
 
+import Metaheuristics.Metaheuristics;
 import SokoGenerator.GeneratorUtils;
 import SokoGenerator.Tree.Pair;
 import org.moeaframework.core.Variable;
@@ -82,7 +83,7 @@ public class GABoard implements Variable {
             pair = GeneratorUtils.GetEmptySpacePair(newBoard);
             newBoard[pair.i][pair.j] = '@';
 
-            jsokoSolution = GAProblem.Solve(newBoard, false, 1); 
+            jsokoSolution = Metaheuristics.Solve(newBoard, false, 1); 
             
         }while(jsokoSolution== null);
 
@@ -91,7 +92,7 @@ public class GABoard implements Variable {
         newBoard = null;
         jsokoSolution = null;
         
-        return GAProblem.application.movesHistory.getPushesCount();
+        return Metaheuristics.application.movesHistory.getPushesCount();
         
     }
 }
