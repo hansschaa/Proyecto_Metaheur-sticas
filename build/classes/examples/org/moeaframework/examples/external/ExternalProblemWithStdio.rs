@@ -1,0 +1,2 @@
+org.moeaframework.examples.external.ExternalProblemWithStdio
+org.moeaframework.examples.external.ExternalProblemWithStdio$MyDTLZ2
