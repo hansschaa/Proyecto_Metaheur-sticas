@@ -1,0 +1,2 @@
+org.moeaframework.examples.misc.MixedTypesExample$MixedTypesSrinivasProblem
+org.moeaframework.examples.misc.MixedTypesExample
