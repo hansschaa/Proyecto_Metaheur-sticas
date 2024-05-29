@@ -19,7 +19,6 @@
  */
 package de.sokoban_online.jsoko.gui;
 
-import SokoGenerator.Generator;
 import static de.sokoban_online.jsoko.resourceHandling.Settings.LetslogicSubmitSolutions.ALL_LEVELS_CURRENT_COLLECTION;
 import static de.sokoban_online.jsoko.resourceHandling.Settings.LetslogicSubmitSolutions.ALL_LEVELS_OF_COLLECTIONS;
 import static de.sokoban_online.jsoko.resourceHandling.Settings.LetslogicSubmitSolutions.ONLY_CURRENT_LEVEL;
@@ -247,8 +246,6 @@ public final class GUI extends JPanel implements ActionListener {
     /** <code>JCheckBox</code> indicating whether the go-through feature is enabled. */
     public JCheckBoxMenuItem isGoThroughEnabled;
     
-        /** Generator **/
-        Generator generator;
 
 	/**
 	 * Creates a new object for displaying the GUI of this program.

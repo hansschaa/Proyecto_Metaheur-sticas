@@ -5,8 +5,8 @@
 
 package SokoGenerator.Tree;
 
-import SokoGenerator.Generator;
-import SokoGenerator.SokobanChromosomeUtils;
+/*import SokoGenerator.Generator;
+import SokoGenerator.SokobanChromosomeUtils;*/
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class SokoTree {
         this.box = this.goal;
         this.Execute(this.goal, 0);
         SokoNode last = this.box;
-        if (last.parent == null) {
+        /*if (last.parent == null) {
             Generator.goalCandidates.remove(this.goal);
             return false;
         } else {
@@ -49,7 +49,9 @@ public class SokoTree {
                 System.out.println();
                 return true;
             }
-        }
+        }*/
+        
+        return false;
     }
 
     public void Execute(SokoNode currentSokoNode, int count) {
