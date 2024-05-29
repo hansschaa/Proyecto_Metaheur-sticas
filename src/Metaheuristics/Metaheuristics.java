@@ -91,10 +91,13 @@ public class Metaheuristics {
         return solution;
     }
 
-    public static void printStatistics() {
+    public static void PrintStatistics() {
         System.out.println("R_TOTAL_CROSSOVER: " + R_TOTAL_CROSSOVER);
         System.out.println("R_TOTAL_EFFECTIVE_CROSSOVER: " + R_TOTAL_EFFECTIVE_CROSSOVER);
         System.out.println("R_TOTAL_MUTATION: " + R_TOTAL_MUTATION);
+        System.out.println("R_TOTAL_MOVE_MUTATION: " + R_TOTAL_MOVE_MUTATION);
+        System.out.println("R_TOTAL_ADD_MUTATION: " + R_TOTAL_ADD_MUTATION);
+        System.out.println("R_TOTAL_REMOVE_MUTATION: " + R_TOTAL_REMOVE_MUTATION);
         System.out.println("R_TOTAL_EFFECTIVE_MUTATION: " + R_TOTAL_EFFECTIVE_MUTATION);
         System.out.println("R_TOTAL_REPAIR: " + R_TOTAL_REPAIR);
         System.out.println("R_TOTAL_EFFECTIVE_REPAIR: " + R_TOTAL_EFFECTIVE_REPAIR);

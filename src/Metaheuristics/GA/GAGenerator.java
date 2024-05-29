@@ -171,10 +171,9 @@ public class GAGenerator {
             System.out.println("Resultados exportados a " + fileName);
 
         } catch (IOException e) {} 
-       
-        
+
         alg.getResult().display();
-        Metaheuristics.printStatistics();
+        Metaheuristics.PrintStatistics();
     }
 
     private Solution GetBestSOlution(Algorithm alg) {

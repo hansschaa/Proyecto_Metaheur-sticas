@@ -42,5 +42,6 @@ public class ESGenerator {
         }
         
         de.getResult().display();
+        Metaheuristics.PrintStatistics();
     }
 }
