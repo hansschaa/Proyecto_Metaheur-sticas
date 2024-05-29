@@ -29,16 +29,20 @@ public class Metaheuristics {
     public static int R_TOTAL_CROSSOVER;
     public static int R_TOTAL_EFFECTIVE_CROSSOVER;
     public static int R_TOTAL_MUTATION;
+    public static int R_TOTAL_MOVE_MUTATION;
+    public static int R_TOTAL_ADD_MUTATION;
+    public static int R_TOTAL_REMOVE_MUTATION;
     public static int R_TOTAL_EFFECTIVE_MUTATION;
     public static int R_TOTAL_REPAIR;
     public static int R_TOTAL_EFFECTIVE_REPAIR;
     
     //Hyperparameters
-    public static int P_GENERATION_COUNT = 25;
+    public static int P_GENERATION_COUNT = 20;
     public static int P_POPULATION_COUNT = 10;
     public static int P_INITIAL_SEARCH_SIZE = 60;
     public static float P_CROSSOVER_PROB = .95f;
     public static float P_MUTATION_PROB = 0.01f;
+    public static float P_ES_MUTATION_PROB = .9f;
     public static int P_MAX_BOXES = 5;
     public static int P_CROSS_SPACING = 2;
     public static char[][] P_BASE_BOARD = {

@@ -135,6 +135,7 @@ import de.sokoban_online.jsoko.utilities.OSSpecific.OSSpecific;
 import de.sokoban_online.jsoko.utilities.OSSpecific.OSSpecific.OSType;
 import de.sokoban_online.jsoko.workInProgress.newSettingsPanel.SettingsFrameNew;
 import Metaheuristics.DE.DEGenerator;
+import Metaheuristics.ES.ESGenerator;
 import Metaheuristics.GA.GAGenerator;
 import Metaheuristics.Metaheuristics;
 import Metaheuristics.PSO.PSOGenerator;
@@ -1075,6 +1076,7 @@ public final class GUI extends JPanel implements ActionListener {
                 GAGenerator gaGenerator = new GAGenerator();
                 PSOGenerator psoGenerator = new PSOGenerator();
                 DEGenerator deGenerator = new DEGenerator();
+                ESGenerator esGenerator = new ESGenerator();
                
                 
                 JMenuItem GA = new JMenuItem("GA");
@@ -1083,10 +1085,13 @@ public final class GUI extends JPanel implements ActionListener {
                 menuItem.setActionCommand("InitPSO");
                 JMenuItem DE = new JMenuItem("DE");
                 menuItem.setActionCommand("InitDE");
+                JMenuItem ES = new JMenuItem("ES");
+                menuItem.setActionCommand("InitES");
                 
                 generateTypes.add(GA);
                 generateTypes.add(PSO);
                 generateTypes.add(DE);
+                generateTypes.add(ES);
 		
 		GA.addActionListener(e -> {
                     gaGenerator.Start();
@@ -1098,6 +1103,10 @@ public final class GUI extends JPanel implements ActionListener {
                 
                 DE.addActionListener(e -> {
                     deGenerator.Start();
+                });
+                
+                ES.addActionListener(e -> {
+                    esGenerator.Start();
                 });
 		
 
