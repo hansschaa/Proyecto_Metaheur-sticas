@@ -4,7 +4,6 @@
  */
 package Metaheuristics.SA;
 
-import Metaheuristics.Metaheuristics;
 import SokoGenerator.GeneratorUtils;
 
 /**
@@ -33,7 +32,7 @@ public class SABoard {
         System.out.println("Board:");
         for (char[] row : board) {
             for (char cell : row) {
-                System.out.print(cell + " ");
+                System.out.print(cell);
             }
             System.out.println();
         }

@@ -44,9 +44,10 @@ public class Metaheuristics {
     public static float P_CROSSOVER_PROB = .95f;
     public static float P_MUTATION_PROB = 0.01f;
     public static float P_ES_MUTATION_PROB = .9f;
-    public static double P_INITIAL_TEMPERATURE =10000;
-    public static double P_COOLING_RATE = 0.003;
-    
+    public static double P_INITIAL_TEMPERATURE =3000;
+    public static double P_COOLING_RATE = 0.015;
+ 
+   
     public static int P_MAX_BOXES = 5;
     public static int P_CROSS_SPACING = 2;
     public static char[][] P_BASE_BOARD = {

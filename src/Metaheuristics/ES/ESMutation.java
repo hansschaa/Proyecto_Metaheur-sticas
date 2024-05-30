@@ -48,7 +48,7 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
         }
     }
      
-     // Simula la función MoveMutation
+    // Simula la función MoveMutation
     public Solution[] MoveMutation(Solution[] parents) {
         //return "MoveMutation";
         Metaheuristics.R_TOTAL_MUTATION++;
