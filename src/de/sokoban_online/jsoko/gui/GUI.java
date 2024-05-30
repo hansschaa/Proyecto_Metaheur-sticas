@@ -138,7 +138,7 @@ import Metaheuristics.DE.DEGenerator;
 import Metaheuristics.ES.ESGenerator;
 import Metaheuristics.GA.GAGenerator;
 import Metaheuristics.Metaheuristics;
-import Metaheuristics.PSO.PSOGenerator;
+import Metaheuristics.SA.SAGenerator;
 import examples.Prueba;
 import java.util.logging.Logger;
 
@@ -1074,39 +1074,44 @@ public final class GUI extends JPanel implements ActionListener {
                 
                 //Generators
                 GAGenerator gaGenerator = new GAGenerator();
-                PSOGenerator psoGenerator = new PSOGenerator();
                 DEGenerator deGenerator = new DEGenerator();
                 ESGenerator esGenerator = new ESGenerator();
-               
+                SAGenerator saGenerator = new SAGenerator(Metaheuristics.P_INITIAL_TEMPERATURE, 
+                        Metaheuristics.P_COOLING_RATE);
                 
                 JMenuItem GA = new JMenuItem("GA");
                 menuItem.setActionCommand("InitGA");
-                JMenuItem PSO = new JMenuItem("PSO");
-                menuItem.setActionCommand("InitPSO");
-                JMenuItem DE = new JMenuItem("DE");
-                menuItem.setActionCommand("InitDE");
                 JMenuItem ES = new JMenuItem("ES");
                 menuItem.setActionCommand("InitES");
+                JMenuItem DE = new JMenuItem("DE");
+                menuItem.setActionCommand("InitDE");
+                JMenuItem SA = new JMenuItem("SA");
+                menuItem.setActionCommand("InitES");
+              
                 
                 generateTypes.add(GA);
-                generateTypes.add(PSO);
-                generateTypes.add(DE);
                 generateTypes.add(ES);
+                generateTypes.add(DE);
+                generateTypes.add(SA);
 		
 		GA.addActionListener(e -> {
+                    Metaheuristics.I_ALG_NAME = "Genetic Algorithm";
                     gaGenerator.Start();
                 });
                 
-                PSO.addActionListener(e -> {
-                    psoGenerator.Start();
+                ES.addActionListener(e -> {
+                    Metaheuristics.I_ALG_NAME = "Particle Swarm Optimization";
+                    esGenerator.Start();
                 });
                 
                 DE.addActionListener(e -> {
+                    Metaheuristics.I_ALG_NAME = "Differential Evolution";
                     deGenerator.Start();
                 });
                 
-                ES.addActionListener(e -> {
-                    esGenerator.Start();
+                SA.addActionListener(e -> {
+                    Metaheuristics.I_ALG_NAME = "Simulated Annealing";
+                    saGenerator.Start();
                 });
 		
 

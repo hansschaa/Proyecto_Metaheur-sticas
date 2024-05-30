@@ -144,6 +144,7 @@ public class GAGenerator {
 
         // Exportar resultados a un archivo CSV
         try (FileWriter csvWriter = new FileWriter(fileName)) {
+            csvWriter.append(Metaheuristics.I_ALG_NAME + "\n");
             // Crear encabezados
             csvWriter.append("Generation,Best Fitness,Worst Fitness,Average Fitness,Standard Deviation\n");
 

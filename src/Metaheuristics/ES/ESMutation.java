@@ -33,14 +33,14 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
         if(boxCount > 1){
             if (percent <= 50) {
                 return MoveMutation(parents);
-            } else if (percent > 50 && percent <= 85) {
+            } else if (percent > 50 && percent <= 75) {
                 return AddMutation(parents);
             } else {
                 return RemoveMutation(parents);
             }
         }
         else{
-            if (percent <= 50) {
+            if (percent <= 60) {
                 return MoveMutation(parents);
             } else {
                 return AddMutation(parents);
@@ -91,6 +91,8 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
         else if(randomElementIndex == 2){
             if(cloneBoard[selectedPair.i][selectedPair.j] == '*')
                 cloneBoard[selectedPair.i][selectedPair.j] = '$';
+            else if(cloneBoard[selectedPair.i][selectedPair.j] == '+')
+                cloneBoard[selectedPair.i][selectedPair.j] = '@';
             else
                 cloneBoard[selectedPair.i][selectedPair.j] = ' ';
                 

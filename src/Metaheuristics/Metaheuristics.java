@@ -26,6 +26,7 @@ public class Metaheuristics {
     //public static de.sokoban_online.jsoko.leveldata.solutions.Solution currentSolution;
     
     //Stats
+    public static String I_ALG_NAME;
     public static int R_TOTAL_CROSSOVER;
     public static int R_TOTAL_EFFECTIVE_CROSSOVER;
     public static int R_TOTAL_MUTATION;
@@ -37,12 +38,15 @@ public class Metaheuristics {
     public static int R_TOTAL_EFFECTIVE_REPAIR;
     
     //Hyperparameters
-    public static int P_GENERATION_COUNT = 20;
+    public static int P_GENERATION_COUNT = 15;
     public static int P_POPULATION_COUNT = 10;
     public static int P_INITIAL_SEARCH_SIZE = 60;
     public static float P_CROSSOVER_PROB = .95f;
     public static float P_MUTATION_PROB = 0.01f;
     public static float P_ES_MUTATION_PROB = .9f;
+    public static double P_INITIAL_TEMPERATURE =10000;
+    public static double P_COOLING_RATE = 0.003;
+    
     public static int P_MAX_BOXES = 5;
     public static int P_CROSS_SPACING = 2;
     public static char[][] P_BASE_BOARD = {
@@ -92,6 +96,7 @@ public class Metaheuristics {
     }
 
     public static void PrintStatistics() {
+        System.out.println("I_ALG_NAME: " + I_ALG_NAME);
         System.out.println("R_TOTAL_CROSSOVER: " + R_TOTAL_CROSSOVER);
         System.out.println("R_TOTAL_EFFECTIVE_CROSSOVER: " + R_TOTAL_EFFECTIVE_CROSSOVER);
         System.out.println("R_TOTAL_MUTATION: " + R_TOTAL_MUTATION);

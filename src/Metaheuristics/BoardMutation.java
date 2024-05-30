@@ -80,6 +80,8 @@ public class BoardMutation implements Variation{
         else if(randomElementIndex == 2){
             if(cloneBoard[selectedPair.i][selectedPair.j] == '*')
                 cloneBoard[selectedPair.i][selectedPair.j] = '$';
+            else if(cloneBoard[selectedPair.i][selectedPair.j] == '+')
+                cloneBoard[selectedPair.i][selectedPair.j] = '@';
             else
                 cloneBoard[selectedPair.i][selectedPair.j] = ' ';
                 

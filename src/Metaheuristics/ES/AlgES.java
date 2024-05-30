@@ -33,6 +33,7 @@ public class AlgES extends SingleObjectiveEvolutionaryAlgorithm {
 				new LinearDominanceComparator(),
 				new RandomInitialization(problem),
 				new SelfAdaptiveNormalVariation());
+                
 	}
 
 	/**

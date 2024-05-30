@@ -41,7 +41,7 @@ public class DEGenerator {
         MetaInitialize gaInitialize = new MetaInitialize(gaProblem);
         
         
-        Algorithm de = new DifferentialEvolution(
+        Algorithm algDE = new AlgDE(
                 gaProblem,
                 Metaheuristics.P_POPULATION_COUNT,
                 gaComparator, 
@@ -51,9 +51,10 @@ public class DEGenerator {
         );
         
         for (int generation = 0; generation < Metaheuristics.P_GENERATION_COUNT; generation++) {
-            de.step();
+            algDE.step();
             System.out.println("Generation: " + generation);
         }
-        //System.out.println("Selection: " + selection.);
+        
+        
     }
 }
