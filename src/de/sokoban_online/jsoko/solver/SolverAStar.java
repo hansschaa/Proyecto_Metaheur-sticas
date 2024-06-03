@@ -388,6 +388,7 @@ public class SolverAStar extends Solver {
                     }
 
                     // Es wurde eine neue Stellung erreicht, deren Lowerbound nun errechnet wird.
+                    //ACÁ SE CALCULA LA HEURISICA????
                     lowerBoundCurrentBoardPosition = lowerBoundCalcuation.calculatePushesLowerBound(newBoxPosition);
 
                     // Push der Kiste rückgängig machen. Der Spieler wird sowieso beim nächsten
