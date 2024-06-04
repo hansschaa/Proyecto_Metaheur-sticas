@@ -5,6 +5,8 @@
 
 package SokoGenerator.Tree;
 
+import java.util.Objects;
+
 public class Pair {
     public int i;
     public int j;
@@ -38,5 +40,18 @@ public class Pair {
     public void Copy(Pair playerPos) {
         this.i = playerPos.i;
         this.j = playerPos.j;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pair pair = (Pair) o;
+        return i == pair.i && j == pair.j;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(i, j);
     }
 }

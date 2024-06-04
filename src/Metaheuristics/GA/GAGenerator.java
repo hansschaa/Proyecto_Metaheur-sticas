@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import org.moeaframework.algorithm.single.GeneticAlgorithm;
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.Population;
 import org.moeaframework.core.Solution;
@@ -61,7 +60,7 @@ public class GAGenerator {
         MetaInitialize gaInitialize = new MetaInitialize(gaProblem);
         
         // Crear el algoritmo genético
-        Algorithm ga = new GeneticAlgorithm(
+        Algorithm ga = new AlgGA(
                 gaProblem,
                 Metaheuristics.P_POPULATION_COUNT,
                 gaComparator, 
@@ -81,7 +80,7 @@ public class GAGenerator {
             double totalFitnessSquared = 0.0;
             
              // Obtener la población actual
-            population = ((GeneticAlgorithm) ga).getPopulation();
+            population = ((AlgGA) ga).getPopulation();
             Solution solution;
             // Imprimir la población actual
             for (int j = 0; j < population.size(); j++) {
@@ -115,9 +114,12 @@ public class GAGenerator {
             avgFitnessPerGeneration.add(avgFitness);
             stdDevFitnessPerGeneration.add(String.format("%.2f", stdDevFitness).replace(',', '.'));
             
-            /*System.gc();
-            System.runFinalization();
-            Runtime.getRuntime().gc();*/
+            if(generation%2 == 0){
+                //System.gc();
+                //System.runFinalization();
+                //Runtime.getRuntime().gc();
+                Metaheuristics.PrintMemory();
+            } 
         }
 
         GetResults(ga);
@@ -180,7 +182,7 @@ public class GAGenerator {
     private Solution GetBestSOlution(Algorithm alg) {
         Solution bestSolution = null;
         double bestFitness = Double.NEGATIVE_INFINITY;
-        Population lastPopulation = ((GeneticAlgorithm) alg).getPopulation();
+        Population lastPopulation = ((AlgGA) alg).getPopulation();
         for (Solution solution : lastPopulation) {
             double fitness = solution.getObjective(0);
             if (fitness > bestFitness) {

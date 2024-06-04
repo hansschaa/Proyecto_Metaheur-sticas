@@ -108,9 +108,9 @@ public class BoardCrossover implements Variation {
                     
                     Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
                     solution1.setVariable(0, offspring1);
-      
+                    solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
                     cloneBoard_1=null;
-                    return new Solution[]{solution1, parents[1]};  
+                    return new Solution[]{solution1};  
                 }
             }
             else{
@@ -127,17 +127,17 @@ public class BoardCrossover implements Variation {
                     
                     Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
                     solution1.setVariable(0, offspring1);
-                    
+                    solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
+
                     cloneBoard_1=null;
 
-                    return new Solution[]{solution1, parents[1]};  
+                    return new Solution[]{solution1};  
                 }
-                
             }
         }
 
         cloneBoard_1=null;
-        return parents;    
+        return new Solution[]{parents[0]};   
     }
     
     public void RepairIllegal(char[][] cloneBoard){

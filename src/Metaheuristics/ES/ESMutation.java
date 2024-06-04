@@ -107,7 +107,7 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
             
             Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
             solution1.setVariable(0, offspring1);
-
+            solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
             cloneBoard=null;
             return new Solution[]{solution1};  
         }
@@ -145,7 +145,7 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
             
             Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
             solution1.setVariable(0, offspring1);
-
+            solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
             cloneBoard=null;
             return new Solution[]{solution1};  
         }
@@ -192,7 +192,7 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
             
             Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
             solution1.setVariable(0, offspring1);
-
+            solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
             cloneBoard=null;
             return new Solution[]{solution1};  
         }

@@ -78,7 +78,7 @@ public class AlgDE extends SingleObjectiveEvolutionaryAlgorithm {
 		}
 		
 		//evaluate children
-		evaluateAll(children);
+		//evaluateAll(children);
 		
 		//greedy selection of next population
 		for (int i = 0; i < population.size(); i++) {

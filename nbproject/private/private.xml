@@ -3,37 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GABoard.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/solver/Influence.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GAGenerator.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/JSoko.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/BoardCrossover.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/ESGenerator.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/Metaheuristics.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/leveldata/solutions/SolutionsGUI.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/SA/SAGenerator.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GABoard.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/AlgES.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/AlgGA.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/MetaInitialize.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/AlgDE.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GAProblem.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/solver/SolverAStar.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/MetaComparator.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/SokoGenerator/Tree/SokoTree.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/SokoGenerator/GeneratorUtils.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/DEGenerator.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/solver/Solver.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/ESMutation.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/solver/SolverIDAStar.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/SokoGenerator/SokoBoard/SokoBoard.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/board/Board.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/SokoGenerator/Tree/Pair.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/SA/SABoard.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/gui/GUI.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/gui/GraphicalLevelBrowser.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/AlgES.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/DECrossover.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/pushesLowerBoundCalculation/LowerBoundCalculation.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GAGenerator.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/BoardMutation.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/de/sokoban_online/jsoko/boardpositions/IBoardPosition.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/BoardCrossover.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/MetaComparator.java</file>
         </group>
     </open-files>
 </project-private>

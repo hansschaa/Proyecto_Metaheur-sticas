@@ -10,6 +10,7 @@ import SokoGenerator.GeneratorUtils;
 import SokoGenerator.Tree.CrossPair;
 import SokoGenerator.Tree.Pair;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import org.moeaframework.core.Solution;
 import org.moeaframework.core.operator.real.DifferentialEvolutionVariation;
@@ -28,7 +29,7 @@ public class DECrossover extends DifferentialEvolutionVariation{
     private final Pair right;
     private final Pair down;
     
-    ArrayList<CrossPair> interestingPivots;
+    ArrayList<DECrossPair> interestingPivots;
     ArrayList<Character> regionChars;
    
             
@@ -56,12 +57,17 @@ public class DECrossover extends DifferentialEvolutionVariation{
         //Parent 1
         GABoard parent1 = (GABoard) parents[0].getVariable(0);
         GABoard parent2 = (GABoard) parents[1].getVariable(0);
+        GABoard parent3 = (GABoard) parents[2].getVariable(0);
+        
         //offspring1 = (GABoard) parent1.copy();  // Define offspring1 as a copy of parent1
         char[][] cloneBoard_1 = GeneratorUtils.CloneCharArray(parent1.GetBoard());
         
         //Get candidates
-        GetInterestingPivots(parent2.GetBoard());
+        GetInterestingPivots(parent2.GetBoard(), parent2);
+        GetInterestingPivots(parent3.GetBoard(), parent3);
         
+        //Remove duplicates
+        RemoveDuplicates();
         
         //Crossover
         if(interestingPivots.isEmpty()){
@@ -73,16 +79,11 @@ public class DECrossover extends DifferentialEvolutionVariation{
             var randomInterestingPivot = interestingPivots.get(Metaheuristics.random.nextInt(interestingPivots.size()));
 
             //Put random region in clone
-            /*System.out.println("ANTES DE PONER LA REGION");
-            GeneratorUtils.PrintCharArray(cloneBoard_1);*/
             for(int i = 0 ; i < Metaheuristics.P_CROSS_SPACING ; i++){
-                var charClone =  parent2.GetBoard()
+                var charClone =  randomInterestingPivot.gaBoard.GetBoard()
                         [randomInterestingPivot.pair.i][randomInterestingPivot.pair.j];
-                /*System.out.println("PONER EL CHAR: " + charClone);
-                System.out.println("En: " +randomInterestingPivot);*/
-                
-                cloneBoard_1[randomInterestingPivot.pair.i][randomInterestingPivot.pair.j] = charClone;
 
+                cloneBoard_1[randomInterestingPivot.pair.i][randomInterestingPivot.pair.j] = charClone;
                 randomInterestingPivot.pair = randomInterestingPivot.pair.plus(randomInterestingPivot.dir);
             }
             
@@ -99,9 +100,12 @@ public class DECrossover extends DifferentialEvolutionVariation{
                     
                     Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
                     solution1.setVariable(0, offspring1);
-      
+                    solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
                     cloneBoard_1=null;
-                    return new Solution[]{solution1, parents[1]};  
+                    interestingPivots.clear();
+                    regionChars.clear();
+                    
+                    return new Solution[]{solution1};  
                 }
             }
             else{
@@ -118,16 +122,20 @@ public class DECrossover extends DifferentialEvolutionVariation{
                     
                     Solution solution1 = new Solution(1, 1); // 1 variable, 2 objetivos (ejemplo)
                     solution1.setVariable(0, offspring1);
-                    
+                    solution1.setObjective(0, Metaheuristics.application.movesHistory.getPushesCount());
                     cloneBoard_1=null;
+                    interestingPivots.clear();
+                    regionChars.clear();
 
-                    return new Solution[]{solution1, parents[1]};  
+                    return new Solution[]{solution1};  
                 }
                 
             }
         }
 
         cloneBoard_1=null;
+        interestingPivots.clear();
+        regionChars.clear();
         return parents;    
     }
     
@@ -197,13 +205,14 @@ public class DECrossover extends DifferentialEvolutionVariation{
         //System.out.println("----------------------");
     }
     
+    public void  RemoveDuplicates() {
+        HashSet<DECrossPair> set = new HashSet<>(interestingPivots);
+        interestingPivots = new ArrayList<>(set);
+    }
     
     
-    public void GetInterestingPivots(char[][] otherGenes){
+    public void GetInterestingPivots(char[][] otherGenes, GABoard gaBoard){
                 
-        interestingPivots.clear();
-        regionChars.clear();
-        
         for(int i = 0 ; i < otherGenes.length ; i++){
             for(int j = 0 ; j < otherGenes[0].length ; j++){
                 
@@ -230,7 +239,7 @@ public class DECrossover extends DifferentialEvolutionVariation{
                 if(regionChars.size() == Metaheuristics.P_CROSS_SPACING){
                     if((regionChars.contains('@') || regionChars.contains('+') || regionChars.contains('$') || 
                            regionChars.contains('.') || regionChars.contains('*')) && !regionChars.contains('#')){
-                        interestingPivots.add(new CrossPair( new Pair(pivot.i, pivot.j), new Pair(0,1)));
+                        interestingPivots.add(new DECrossPair( new Pair(pivot.i, pivot.j), new Pair(0,1), gaBoard));
                     }
                 }
                 
@@ -252,30 +261,22 @@ public class DECrossover extends DifferentialEvolutionVariation{
                 if(regionChars.size() == Metaheuristics.P_CROSS_SPACING){
                     if(regionChars.contains('@') || regionChars.contains('+') || regionChars.contains('$') || 
                            regionChars.contains('.') || regionChars.contains('*')){
-                    interestingPivots.add(new CrossPair( new Pair(pivot.i, pivot.j), new Pair(1,0)));
+                    interestingPivots.add(new DECrossPair( new Pair(pivot.i, pivot.j), new Pair(1,0), gaBoard));
                     }
                 }
             }
-        }
-        
-        
+        } 
     }
     
     public boolean IsLegal(char[][] board, CrossPair newCrossPair){
 
+        
+        
+        
         int playerCount =  GeneratorUtils.CountCharacters(0, board);
         int boxCount = GeneratorUtils.CountCharacters(1, board);
         int goalCount = GeneratorUtils.CountCharacters(2, board);
       
-        if(playerCount != 1)
-            return false;
-        
-        if(boxCount == 0 || goalCount == 0)
-            return false;
-        
-        if(boxCount != goalCount)
-            return false;
-        
         if(boxCount > Metaheuristics.P_MAX_BOXES){
             
             Pair boxToRemove = GeneratorUtils.RemoveRandomElementByType(1,boxCount,newCrossPair.pair, board);
@@ -303,6 +304,12 @@ public class DECrossover extends DifferentialEvolutionVariation{
             }
         }
         
-        return true;
+        if(playerCount != 1)
+            return false;
+        
+        if(boxCount == 0 || goalCount == 0)
+            return false;
+        
+        return boxCount == goalCount;
     }
 }

@@ -4,6 +4,8 @@
  */
 package SokoGenerator.Tree;
 
+import java.util.Objects;
+
 /**
  *
  * @author Hans
@@ -11,6 +13,7 @@ package SokoGenerator.Tree;
 public class CrossPair {
     public Pair pair;
     public Pair dir;
+    
 
     public CrossPair(Pair pair, Pair dir) {
         this.pair = pair;
@@ -22,4 +25,17 @@ public class CrossPair {
         System.out.println("Dir: " + dir.i + "," + dir.j);
     }   
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CrossPair that = (CrossPair) o;
+        return Objects.equals(pair, that.pair) &&
+               Objects.equals(dir, that.dir);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pair, dir);
+    }
 }

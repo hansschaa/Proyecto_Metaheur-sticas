@@ -65,7 +65,7 @@ public class AlgES extends SingleObjectiveEvolutionaryAlgorithm {
                 offspring.addAll(children);
         }
 
-        evaluateAll(offspring);
+        //evaluateAll(offspring);
 
         population.addAll(offspring);
         population.truncate(populationSize, comparator);

@@ -28,6 +28,7 @@ public class GAProblem extends AbstractProblem {
         super(1, 1); // 1 variable de decisión (la matriz), 1 objetivo
     }
 
+    //Este metodo se llama por cada solucion en el evaluateALL del algoritmo genético
     @Override
     public void evaluate(Solution solution) {
         //System.out.println("Evaluate");
