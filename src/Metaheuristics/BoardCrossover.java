@@ -271,20 +271,11 @@ public class BoardCrossover implements Variation {
     }
     
     public boolean IsLegal(char[][] board, CrossPair newCrossPair){
-
+        
         int playerCount =  GeneratorUtils.CountCharacters(0, board);
         int boxCount = GeneratorUtils.CountCharacters(1, board);
         int goalCount = GeneratorUtils.CountCharacters(2, board);
       
-        if(playerCount != 1)
-            return false;
-        
-        if(boxCount == 0 || goalCount == 0)
-            return false;
-        
-        if(boxCount != goalCount)
-            return false;
-        
         if(boxCount > Metaheuristics.P_MAX_BOXES){
             
             Pair boxToRemove = GeneratorUtils.RemoveRandomElementByType(1,boxCount,newCrossPair.pair, board);
@@ -312,6 +303,12 @@ public class BoardCrossover implements Variation {
             }
         }
         
-        return true;
+        if(playerCount != 1)
+            return false;
+        
+        if(boxCount == 0 || goalCount == 0)
+            return false;
+        
+        return boxCount == goalCount;
     }
 }

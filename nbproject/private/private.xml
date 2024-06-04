@@ -3,16 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/Metaheuristics.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/SokoGenerator/Tree/CrossPair.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GABoard.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/AlgES.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/AlgGA.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GAGenerator.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/DEGenerator.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/ESMutation.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/DECrossPair.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/BoardCrossover.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/ESGenerator.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/SokoGenerator/Tree/Pair.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/Metaheuristics.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/SA/SAGenerator.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/ES/AlgES.java</file>
+            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/DECrossover.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/MetaInitialize.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/DE/AlgDE.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GAProblem.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/GA/GAGenerator.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/BoardMutation.java</file>
-            <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/BoardCrossover.java</file>
             <file>file:/C:/Users/Hans/Desktop/Test/JSokoGenerate-master/src/Metaheuristics/MetaComparator.java</file>
         </group>
     </open-files>

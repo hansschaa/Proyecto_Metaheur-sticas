@@ -31,13 +31,24 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
         int boxCount = GeneratorUtils.CountCharacters(1, ((GABoard) parents[0].getVariable(0)).GetBoard());
         
         if(boxCount > 1){
-            if (percent <= 50) {
-                return MoveMutation(parents);
-            } else if (percent > 50 && percent <= 75) {
-                return AddMutation(parents);
-            } else {
-                return RemoveMutation(parents);
+            if(boxCount == Metaheuristics.P_MAX_BOXES){
+                if (percent <= 60) {
+                    return MoveMutation(parents);
+                } else {
+                    return RemoveMutation(parents);
+                }
             }
+            
+            else{
+                if (percent <= 50) {
+                    return MoveMutation(parents);
+                } else if (percent > 50 && percent <= 75) {
+                    return AddMutation(parents);
+                } else {
+                    return RemoveMutation(parents);
+                }
+            }
+            
         }
         else{
             if (percent <= 60) {

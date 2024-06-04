@@ -269,9 +269,6 @@ public class DECrossover extends DifferentialEvolutionVariation{
     }
     
     public boolean IsLegal(char[][] board, CrossPair newCrossPair){
-
-        
-        
         
         int playerCount =  GeneratorUtils.CountCharacters(0, board);
         int boxCount = GeneratorUtils.CountCharacters(1, board);
