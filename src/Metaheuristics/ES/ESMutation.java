@@ -48,7 +48,6 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
                     return RemoveMutation(parents);
                 }
             }
-            
         }
         else{
             if (percent <= 60) {

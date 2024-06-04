@@ -102,12 +102,22 @@ public class SAGenerator {
         int boxCount = GeneratorUtils.CountCharacters(1, toMutate.board);
         
         if(boxCount > 1){
-            if (percent <= 50) {
-                return MoveMutation(toMutate);
-            } else if (percent > 50 && percent <= 75) {
-                return AddMutation(toMutate);
-            } else {
-                return RemoveMutation(toMutate);
+            if(boxCount == Metaheuristics.P_MAX_BOXES){
+                if (percent <= 60) {
+                    return MoveMutation(toMutate);
+                } else {
+                    return RemoveMutation(toMutate);
+                }
+            }
+            
+            else{
+                if (percent <= 50) {
+                    return MoveMutation(toMutate);
+                } else if (percent > 50 && percent <= 75) {
+                    return AddMutation(toMutate);
+                } else {
+                    return RemoveMutation(toMutate);
+                }
             }
         }
         else{
