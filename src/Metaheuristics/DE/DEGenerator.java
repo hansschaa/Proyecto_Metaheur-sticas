@@ -4,12 +4,14 @@
  */
 package Metaheuristics.DE;
 
+import Metaheuristics.ES.AlgES;
 import Metaheuristics.GA.AlgGA;
 import Metaheuristics.GA.GABoard;
 import Metaheuristics.GA.GAProblem;
 import Metaheuristics.MetaComparator;
 import Metaheuristics.MetaInitialize;
 import Metaheuristics.Metaheuristics;
+import SokoGenerator.GeneratorUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,7 +40,7 @@ public class DEGenerator {
         Metaheuristics.Init();
         
         // Crear operadores de crossover y mutación
-        DECrossover gaBoardCrossover = new DECrossover(Metaheuristics.P_CROSSOVER_PROB, .2);
+        DECrossover gaBoardCrossover = new DECrossover(Metaheuristics.P_CROSSOVER_PROB_DE, .2);
         
         // Crear el comparador para problemas monoobjetivo
         MetaComparator gaComparator = new MetaComparator();
@@ -58,17 +60,21 @@ public class DEGenerator {
                 gaBoardCrossover
         );
         Population population = null;
-        for (int generation = 0; generation < Metaheuristics.P_GENERATION_COUNT; generation++) {
-            algDE.step();
+        // Ejecutar el algoritmo por un número determinado de generaciones
+        for (int generation = 0; !Metaheuristics.STOP ; generation++) {
             System.out.println("Generation: " + generation);
-
+            Metaheuristics.S_TIME = new Date().getTime();  
+            algDE.step();
+            Metaheuristics.E_TIME = new Date().getTime();
+            Metaheuristics.TOTALTIME += Metaheuristics.E_TIME-Metaheuristics.S_TIME;
+            
             // Registrar estadísticas de la población actual
             double bestFitness = Double.NEGATIVE_INFINITY;
             double worstFitness = Double.POSITIVE_INFINITY;
             double totalFitness = 0.0;
             double totalFitnessSquared = 0.0;
             
-             // Obtener la población actual
+            // Obtener la población actual
             population = ((AlgDE) algDE).getPopulation();
             Solution solution;
             // Imprimir la población actual
@@ -76,9 +82,6 @@ public class DEGenerator {
 
                 solution = population.get(j);
                 double fitness = solution.getObjective(0); 
-                /*System.out.println("----------------------------: " +  j);
-                System.out.println( solution.getVariable(0));
-                System.out.println( fitness);  */
 
                 if (fitness > bestFitness) {
                     bestFitness = fitness;
@@ -110,7 +113,7 @@ public class DEGenerator {
                 Metaheuristics.PrintMemory();
             } 
         }
-        
+
         GetResults(algDE);
         
     }
@@ -140,11 +143,11 @@ public class DEGenerator {
             csvWriter.append("Generation,Best Fitness,Worst Fitness,Average Fitness,Standard Deviation\n");
 
             // Rellenar datos
-            for (int i = 0; i < Metaheuristics.P_GENERATION_COUNT; i++) {
+            for (int i = 0; i < bestFitnessPerGeneration.size(); i++) {
                 csvWriter.append(String.valueOf(i)).append(",")
                         .append(String.valueOf(bestFitnessPerGeneration.get(i))).append(",")
                         .append(String.valueOf(worstFitnessPerGeneration.get(i))).append(",")
-                        .append(String.valueOf(avgFitnessPerGeneration.get(i))).append(",")
+                        .append(String.valueOf(Metaheuristics.round(avgFitnessPerGeneration.get(i), 1))).append(",")
                         .append(String.valueOf(stdDevFitnessPerGeneration.get(i)));
 
                 csvWriter.append("\n");
@@ -164,7 +167,7 @@ public class DEGenerator {
 
         } catch (IOException e) {} 
 
-        alg.getResult().display();
+        //alg.getResult().display();
         Metaheuristics.PrintStatistics();
     }
 
@@ -179,6 +182,12 @@ public class DEGenerator {
                 bestSolution = solution;
             }
         }
+        
+        //GeneratorUtils.PrintCharArray(((GABoard)bestSolution.getVariable(0)).GetBoard());
+        //System.out.println(bestSolution.getObjective(0));
+        
+        Metaheuristics.BESTFITNESS = bestSolution.getObjective(0);
+        Metaheuristics.BESTBOARD = ((GABoard)bestSolution.getVariable(0)).GetBoard();
         
         return bestSolution;
     }

@@ -39,7 +39,7 @@ public class BoardMutation implements Variation{
     public Solution[] evolve(Solution[] parents) {
         //System.out.println("Mutation");
 
-        if (Metaheuristics.random.nextFloat()> Metaheuristics.P_MUTATION_PROB) return parents;
+        if (Metaheuristics.random.nextFloat()> Metaheuristics.P_MUTATION_PROB_GA) return parents;
         //System.out.println("Mutation");
         Metaheuristics.R_TOTAL_MUTATION++;
         

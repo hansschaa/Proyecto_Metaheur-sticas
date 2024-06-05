@@ -4,6 +4,7 @@
  */
 package Metaheuristics;
 
+import SokoGenerator.GeneratorUtils;
 import de.sokoban_online.jsoko.JSoko;
 import de.sokoban_online.jsoko.leveldata.Level;
 import de.sokoban_online.jsoko.leveldata.LevelCollection;
@@ -40,9 +41,10 @@ public class Metaheuristics {
     public static int P_GENERATION_COUNT = 15;
     public static int P_POPULATION_COUNT = 15;
     public static int P_INITIAL_SEARCH_SIZE = 80;
-    public static float P_CROSSOVER_PROB = .95f;
-    public static float P_MUTATION_PROB = 0.1f;
-    public static float P_ES_MUTATION_PROB = .9f;
+    public static float P_CROSSOVER_PROB_GA = .95f;
+    public static float P_CROSSOVER_PROB_DE = .95f;
+    public static float P_MUTATION_PROB_GA = 0.1f;
+    public static float P_MUTATION_PROB_ES = .95f;
     public static double P_INITIAL_TEMPERATURE =3000;
     public static double P_COOLING_RATE = 0.015;
  
@@ -57,11 +59,19 @@ public class Metaheuristics {
     {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#'},
     {'#', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#', '#', '#'},
     {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
-    public static int NEWSOlCOUNT = 0;
-    public static int EVALUATECOUNT = 0;
+    public static int NEWSOlCOUNT = 0;  
     public static int COPY = 0;
     public static int CALCULATEFITNESS = 0; 
     
+    //Evaluation count
+    public static int EVALUATECOUNT = 0;
+    public static int MAXEVALUATIONS = 800; 
+    public static boolean STOP = false; 
+    public static long TOTALTIME = 0; 
+    public static long S_TIME = 0;
+    public static long E_TIME = 0;
+    public static char[][] BESTBOARD;
+    public static double BESTFITNESS = 0;
     //Others
     public static Runtime runtime;
     
@@ -79,6 +89,8 @@ public class Metaheuristics {
     public static de.sokoban_online.jsoko.leveldata.solutions.Solution Solve(char[][] board, boolean optimal, int boxCount) {
         
         EVALUATECOUNT++;
+        if(EVALUATECOUNT == MAXEVALUATIONS)
+            STOP = true;
         
         //solverLevel.setBoardData(GeneratorUtils.ConvertCharArrayToString(board));
         solverLevel.setBoardData(board);
@@ -123,7 +135,7 @@ public class Metaheuristics {
 
     public static void PrintStatistics() {
         System.out.println("-> STATS: ");
-        System.out.println("I_ALG_NAME: " + I_ALG_NAME);
+        /*System.out.println("I_ALG_NAME: " + I_ALG_NAME);
         System.out.println("R_TOTAL_CROSSOVER: " + R_TOTAL_CROSSOVER);
         System.out.println("R_TOTAL_EFFECTIVE_CROSSOVER: " + R_TOTAL_EFFECTIVE_CROSSOVER);
         System.out.println("R_TOTAL_REPAIR: " + R_TOTAL_REPAIR);
@@ -132,11 +144,25 @@ public class Metaheuristics {
         System.out.println("R_TOTAL_EFFECTIVE_MUTATION: " + R_TOTAL_EFFECTIVE_MUTATION);
         System.out.println("R_TOTAL_MOVE_MUTATION: " + R_TOTAL_MOVE_MUTATION);
         System.out.println("R_TOTAL_ADD_MUTATION: " + R_TOTAL_ADD_MUTATION);
-        System.out.println("R_TOTAL_REMOVE_MUTATION: " + R_TOTAL_REMOVE_MUTATION);
+        System.out.println("R_TOTAL_REMOVE_MUTATION: " + R_TOTAL_REMOVE_MUTATION);*/
 
         //System.out.println("NEWSOlCOUNT: " + NEWSOlCOUNT);
-        System.out.println("EVALUATION COUNT: " + EVALUATECOUNT);
+        //System.out.println("EVALUATION COUNT: " + EVALUATECOUNT);
         //System.out.println("COPY: " + COPY);
         //System.out.println("CALCULATEFITNESS: " + CALCULATEFITNESS);
+        
+        System.out.println(I_ALG_NAME+","+P_INITIAL_SEARCH_SIZE+","+P_POPULATION_COUNT+","+P_CROSSOVER_PROB_GA+
+                "," + P_CROSSOVER_PROB_DE + "," + P_MUTATION_PROB_GA + "," + P_MUTATION_PROB_ES +
+                "," + P_INITIAL_TEMPERATURE + "," + P_COOLING_RATE + "," + R_TOTAL_CROSSOVER +
+                "," + R_TOTAL_EFFECTIVE_CROSSOVER + "," + R_TOTAL_REPAIR + "," + R_TOTAL_EFFECTIVE_REPAIR +
+                "," + R_TOTAL_MUTATION + "," + R_TOTAL_EFFECTIVE_MUTATION + "," + R_TOTAL_MOVE_MUTATION + 
+                "," + R_TOTAL_ADD_MUTATION + "," + R_TOTAL_REMOVE_MUTATION + "," + EVALUATECOUNT +
+                "," + TOTALTIME + "," + BESTFITNESS);
+        GeneratorUtils.PrintCharArray(BESTBOARD);
     }
+    
+    public static double round (double value, int precision) {
+    int scale = (int) Math.pow(10, precision);
+    return (double) Math.round(value * scale) / scale;
+}
 }

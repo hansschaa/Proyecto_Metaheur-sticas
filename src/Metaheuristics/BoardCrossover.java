@@ -58,7 +58,7 @@ public class BoardCrossover implements Variation {
     @Override
     public Solution[] evolve(Solution[] parents) {
 
-        if (random.nextFloat() > crossoverRate) return parents;
+        if (random.nextFloat() > Metaheuristics.P_CROSSOVER_PROB_GA) return parents;
       
         Metaheuristics.R_TOTAL_CROSSOVER++;
         

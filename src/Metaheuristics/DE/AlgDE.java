@@ -65,27 +65,27 @@ public class AlgDE extends SingleObjectiveEvolutionaryAlgorithm {
 	
 	@Override
 	protected void iterate() {
-		Population population = getPopulation();
-		DifferentialEvolutionVariation variation = getVariation();
-		Population children = new Population();
+            Population population = getPopulation();
+            DifferentialEvolutionVariation variation = getVariation();
+            Population children = new Population();
 
-		//generate children
-		for (int i = 0; i < population.size(); i++) {
-			selection.setCurrentIndex(i);
+            //generate children
+            for (int i = 0; i < population.size(); i++) {
+                    selection.setCurrentIndex(i);
 
-			Solution[] parents = selection.select(variation.getArity(), population);
-			children.add(variation.evolve(parents)[0]);
-		}
-		
-		//evaluate children
-		//evaluateAll(children);
-		
-		//greedy selection of next population
-		for (int i = 0; i < population.size(); i++) {
-			if (((DominanceComparator)comparator).compare(children.get(i), population.get(i)) < 0) {
-				population.replace(i, children.get(i));
-			}
-		}
+                    Solution[] parents = selection.select(variation.getArity(), population);
+                    children.add(variation.evolve(parents)[0]);
+            }
+
+            //evaluate children
+            //evaluateAll(children);
+
+            //greedy selection of next population
+            for (int i = 0; i < population.size(); i++) {
+                    if (((DominanceComparator)comparator).compare(children.get(i), population.get(i)) < 0) {
+                            population.replace(i, children.get(i));
+                    }
+            }
 	}
 
 	@Override

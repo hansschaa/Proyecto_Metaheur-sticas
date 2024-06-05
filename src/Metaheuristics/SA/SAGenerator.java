@@ -4,11 +4,11 @@
  */
 package Metaheuristics.SA;
 
-import Metaheuristics.GA.GABoard;
 import Metaheuristics.Metaheuristics;
+import static Metaheuristics.Metaheuristics.I_ALG_NAME;
 import SokoGenerator.GeneratorUtils;
 import SokoGenerator.Tree.Pair;
-import org.moeaframework.core.Solution;
+import java.util.Date;
 
 /**
  *
@@ -21,10 +21,11 @@ public class SAGenerator {
     
     Pair selectedPair;
     Pair emptySpace;
-    
+    SABoard bestSolution;
     public SAGenerator(double initialTemperature, double coolingRate){
         this.initialTemperature = initialTemperature;
         this.coolingRate = coolingRate;
+        this.bestSolution = new SABoard();
     }
     
     public void Start(){
@@ -33,12 +34,14 @@ public class SAGenerator {
         Metaheuristics.Init();
         
         SABoard currentSolution = GenerateInitialBoard();
-        SABoard bestSolution = new SABoard();
+        
         currentSolution.Copy(bestSolution);
 
         double temperature = initialTemperature;
-
-        while (temperature > 1) {
+        Metaheuristics.S_TIME = new Date().getTime(); 
+        //while (temperature > 1) 
+        while (!Metaheuristics.STOP) {
+              
             SABoard newSolution = Mutate(currentSolution);
             int newScore = currentSolution.fitness;
 
@@ -47,19 +50,27 @@ public class SAGenerator {
             }
 
             if (currentSolution.fitness > bestSolution.fitness) {
-                //bestSolution = problem.cloneBoard(currentSolution);
-                //bestScore = currentScore;
                 currentSolution.Copy(bestSolution);
             }
 
             temperature *= 1 - coolingRate;
-            System.out.println("Temperature: " + temperature);
+            //System.out.println("Temperature: " + temperature);
         }
+        Metaheuristics.E_TIME = new Date().getTime();
+        Metaheuristics.TOTALTIME += Metaheuristics.E_TIME-Metaheuristics.S_TIME;
 
-        System.out.println("Fin");
         bestSolution.Show();
-        
+        ShowStadistics();
         //return bestSolution;
+    }
+    
+    public void ShowStadistics(){
+        
+        Metaheuristics.BESTBOARD = bestSolution.board;
+        Metaheuristics.BESTFITNESS = bestSolution.fitness;
+        
+        System.out.println(Metaheuristics.I_ALG_NAME + "," + initialTemperature + "," + coolingRate+ ","
+                + Metaheuristics.BESTFITNESS+ ","+ Metaheuristics.TOTALTIME);
     }
     
     private double acceptanceProbability(int currentScore, int newScore, double temperature) {

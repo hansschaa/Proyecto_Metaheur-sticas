@@ -26,6 +26,9 @@ public class ESMutation extends SelfAdaptiveNormalVariation {
     }
      
      public Solution[] evolve(Solution[] parents) {
+         
+        if (Metaheuristics.random.nextFloat()> Metaheuristics.P_MUTATION_PROB_ES) return new Solution[]{parents[0]};
+         
         // Genera un número aleatorio entre 0 y 99
         int percent = Metaheuristics.random.nextInt(100);
         int boxCount = GeneratorUtils.CountCharacters(1, ((GABoard) parents[0].getVariable(0)).GetBoard());

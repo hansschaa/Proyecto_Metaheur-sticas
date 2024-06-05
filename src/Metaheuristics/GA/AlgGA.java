@@ -16,6 +16,7 @@
  * along with the MOEA Framework.  If not, see <http://www.gnu.org/licenses/>.
  */
 package Metaheuristics.GA;
+import Metaheuristics.Metaheuristics;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Comparator;
@@ -103,7 +104,10 @@ public class AlgGA extends SingleObjectiveEvolutionaryAlgorithm {
 			Solution[] children = variation.evolve(parents);
                         
 			offspring.addAll(children);
-                        //System.out.println("Offspring value: " + children[0].getObjective(0));
+                        if(Metaheuristics.STOP){
+                            System.out.println("EXIT!!!!!!");
+                            break;
+                        }  
 		}
 
 		//evaluateAll(offspring);
@@ -115,6 +119,8 @@ public class AlgGA extends SingleObjectiveEvolutionaryAlgorithm {
 		population.truncate(populationSize, comparator);
 		
 		updateEliteSolution();
+                
+                
 	}
 	
 	/**
