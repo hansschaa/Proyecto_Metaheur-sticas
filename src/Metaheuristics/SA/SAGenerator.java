@@ -5,7 +5,6 @@
 package Metaheuristics.SA;
 
 import Metaheuristics.Metaheuristics;
-import static Metaheuristics.Metaheuristics.I_ALG_NAME;
 import SokoGenerator.GeneratorUtils;
 import SokoGenerator.Tree.Pair;
 import java.util.Date;

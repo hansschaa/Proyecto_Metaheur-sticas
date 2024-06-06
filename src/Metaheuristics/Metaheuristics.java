@@ -27,6 +27,7 @@ public class Metaheuristics {
     
     //Stats
     public static String I_ALG_NAME;
+    public static int I_BOARD_ID = 0;
     public static int R_TOTAL_CROSSOVER;
     public static int R_TOTAL_EFFECTIVE_CROSSOVER;
     public static int R_TOTAL_REPAIR;
@@ -38,7 +39,6 @@ public class Metaheuristics {
     public static int R_TOTAL_EFFECTIVE_MUTATION;
     
     //Hyperparameters
-    public static int P_GENERATION_COUNT = 15;
     public static int P_POPULATION_COUNT = 15;
     public static int P_INITIAL_SEARCH_SIZE = 80;
     public static float P_CROSSOVER_PROB_GA = .95f;
@@ -151,7 +151,7 @@ public class Metaheuristics {
         //System.out.println("COPY: " + COPY);
         //System.out.println("CALCULATEFITNESS: " + CALCULATEFITNESS);
         
-        System.out.println(I_ALG_NAME+","+P_INITIAL_SEARCH_SIZE+","+P_POPULATION_COUNT+","+P_CROSSOVER_PROB_GA+
+        System.out.println(I_ALG_NAME+","+I_BOARD_ID+","+P_INITIAL_SEARCH_SIZE+","+P_POPULATION_COUNT+","+P_CROSSOVER_PROB_GA+
                 "," + P_CROSSOVER_PROB_DE + "," + P_MUTATION_PROB_GA + "," + P_MUTATION_PROB_ES +
                 "," + P_INITIAL_TEMPERATURE + "," + P_COOLING_RATE + "," + R_TOTAL_CROSSOVER +
                 "," + R_TOTAL_EFFECTIVE_CROSSOVER + "," + R_TOTAL_REPAIR + "," + R_TOTAL_EFFECTIVE_REPAIR +
@@ -165,4 +165,27 @@ public class Metaheuristics {
     int scale = (int) Math.pow(10, precision);
     return (double) Math.round(value * scale) / scale;
 }
+
+    public static void UpdateBoardBase() {
+        switch(I_BOARD_ID){
+            case 0:
+                P_BASE_BOARD = Boards.tablero1;
+                break;
+            case 1:
+                P_BASE_BOARD = Boards.tablero2;
+                break;
+            case 2:
+                P_BASE_BOARD = Boards.tablero3;
+                break;
+            case 3:
+                P_BASE_BOARD = Boards.tablero4;
+                break;
+            case 4:
+                P_BASE_BOARD = Boards.tablero5;
+                break;
+            case 5:
+                P_BASE_BOARD = Boards.tablero6;
+                break;
+        }
+    }
 }

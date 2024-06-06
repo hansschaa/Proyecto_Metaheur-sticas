@@ -4,14 +4,11 @@
  */
 package Metaheuristics.DE;
 
-import Metaheuristics.ES.AlgES;
-import Metaheuristics.GA.AlgGA;
 import Metaheuristics.GA.GABoard;
 import Metaheuristics.GA.GAProblem;
 import Metaheuristics.MetaComparator;
 import Metaheuristics.MetaInitialize;
 import Metaheuristics.Metaheuristics;
-import SokoGenerator.GeneratorUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

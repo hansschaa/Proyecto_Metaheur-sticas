@@ -1070,7 +1070,7 @@ public final class GUI extends JPanel implements ActionListener {
                 
                   //Metaheuristics
                 Metaheuristics Metaheuristics = new Metaheuristics(application);
-               
+                Metaheuristics.UpdateBoardBase();
                 
                 //Generators
                 GAGenerator gaGenerator = new GAGenerator();
